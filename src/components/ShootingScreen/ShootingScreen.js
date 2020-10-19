@@ -1,13 +1,15 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import Court from "../Court/Court";
 import ScoreControl from "../ScoreControl/ScoreControl";
+import * as actions from "../../store/actions/scoreControl";
 
 import axios from "../../axios-orders";
 
 class ShootingScreen extends Component {
   state = {
-    score: 0,
+    //score: 0,
     maxScore: 10,
     shooting: false,
     isAreaSelected: [
@@ -26,6 +28,9 @@ class ShootingScreen extends Component {
       false,
       false,
     ],
+    // Each index off the Array corresponding to a spot.
+    // The first data is Nb off good shoots, the second data is the total Nb of shoots
+    // At first is null until we got the datas from the backend
     spotShootsData: [
       [null, null],
       [null, null],
@@ -48,6 +53,7 @@ class ShootingScreen extends Component {
   };
 
   componentDidMount() {
+    // We receive the datas from the backend
     this.updateGlobalDatasHandler();
   }
 
@@ -63,16 +69,7 @@ class ShootingScreen extends Component {
         const spotShoots = [...this.state.spotShootsData];
 
         for (const data in datas) {
-          // let goodShoots = 0;
-          // let nbShoots = 0;
-
-          // let spotGoodShoots = 0;
-          // let sportNbShoots = 0;
-
           for (let i = 0; i < datas[data].length; i++) {
-            // goodShoots = datas[data][i].goodShoots;
-            // nbShoots = datas[data][i].nbOfShoots;
-            // console.log(datas[data][i], " index " + i);
             totalGoodShoots += datas[data][i].goodShoots;
             totalShoots += datas[data][i].nbOfShoots;
 
@@ -138,14 +135,6 @@ class ShootingScreen extends Component {
                 console.error("Problem Number Spot");
             }
           }
-
-          // datas[data].forEach((element, index) => {
-          //   goodShoots = element.goodShoots;
-          //   nbShoots = element.nbOfShoots;
-          //   console.log(element, " index " + index);
-          // });
-          // totalGoodShoots += goodShoots;
-          // totalShoots += nbShoots;
         }
 
         this.setState({
@@ -156,18 +145,18 @@ class ShootingScreen extends Component {
       });
   };
 
-  incrementHandler = () => {
-    if (this.state.score < this.state.maxScore) {
-      const oldScore = this.state.score;
-      this.setState({
-        score: oldScore + 1,
-      });
-    } else return;
-  };
+  // incrementHandler = () => {
+  //   if (this.props.score < this.state.maxScore) {
+  //     const oldScore = this.props.score;
+  //     this.setState({
+  //       score: oldScore + 1,
+  //     });
+  //   } else return;
+  // };
 
   decrementHandler = () => {
-    if (this.state.score > 0) {
-      const oldScore = this.state.score;
+    if (this.props.score > 0) {
+      const oldScore = this.props.score;
       this.setState({
         score: oldScore - 1,
       });
@@ -206,7 +195,7 @@ class ShootingScreen extends Component {
     data.push({
       id: Date.now(),
       spot: spotIndex,
-      goodShoots: this.state.score,
+      goodShoots: this.props.score,
       nbOfShoots: this.state.maxScore,
     });
 
@@ -259,8 +248,6 @@ class ShootingScreen extends Component {
   };
 
   trainingDoneHandler = () => {
-    //console.log("training done");
-
     axios
       .post("/trainingData.json", this.state.localStorageData)
       .then((response) => {
@@ -284,10 +271,10 @@ class ShootingScreen extends Component {
         />
         <ScoreControl
           shooting={this.state.shooting}
-          score={this.state.score}
+          score={this.props.score}
           maxScore={this.state.maxScore}
-          addPoint={this.incrementHandler}
-          removePoint={this.decrementHandler}
+          addPoint={this.props.onIncrementScore}
+          removePoint={this.props.onDecrementScore}
           scoreDone={this.finishShootingHandler}
           changeMaxScore={this.changeMaxScoreHandler}
           trainingDone={this.trainingDoneHandler}
@@ -297,4 +284,17 @@ class ShootingScreen extends Component {
   }
 }
 
-export default ShootingScreen;
+const mapStateToProps = (state) => {
+  return {
+    score: state.score,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onIncrementScore: () => dispatch(actions.incrementScore()),
+    onDecrementScore: () => dispatch(actions.decrementScore()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShootingScreen);
