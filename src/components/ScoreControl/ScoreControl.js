@@ -17,7 +17,6 @@ const scoreControl = (props) => {
         addPoint={props.addPoint}
         removePoint={props.removePoint}
         scoreDone={props.scoreDone}
-        changeMaxScore={props.changeMaxScore}
       />
     );
   }

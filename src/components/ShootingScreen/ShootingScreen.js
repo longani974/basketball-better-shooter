@@ -10,7 +10,7 @@ import axios from "../../axios-orders";
 class ShootingScreen extends Component {
   state = {
     //score: 0,
-    maxScore: 10,
+    //maxScore: 10,
     shooting: false,
     isAreaSelected: [
       false,
@@ -73,67 +73,67 @@ class ShootingScreen extends Component {
             totalGoodShoots += datas[data][i].goodShoots;
             totalShoots += datas[data][i].nbOfShoots;
 
-            switch (datas[data][i].spot) {
-              case 0:
-                spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
-                spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
-                break;
-              case 1:
-                spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
-                spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
-                break;
-              case 2:
-                spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
-                spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
-                break;
-              case 3:
-                spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
-                spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
-                break;
-              case 4:
-                spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
-                spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
-                break;
-              case 5:
-                spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
-                spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
-                break;
-              case 6:
-                spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
-                spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
-                break;
-              case 7:
-                spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
-                spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
-                break;
-              case 8:
-                spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
-                spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
-                break;
-              case 9:
-                spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
-                spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
-                break;
-              case 10:
-                spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
-                spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
-                break;
-              case 11:
-                spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
-                spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
-                break;
-              case 12:
-                spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
-                spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
-                break;
-              case 13:
-                spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
-                spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
-                break;
+            // switch (datas[data][i].spot) {
+            //   case 0:
+            spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
+            spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
+            // break;
+            //   case 1:
+            //     spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
+            //     spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
+            //     break;
+            //   case 2:
+            //     spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
+            //     spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
+            //     break;
+            //   case 3:
+            //     spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
+            //     spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
+            //     break;
+            //   case 4:
+            //     spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
+            //     spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
+            //     break;
+            //   case 5:
+            //     spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
+            //     spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
+            //     break;
+            //   case 6:
+            //     spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
+            //     spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
+            //     break;
+            //   case 7:
+            //     spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
+            //     spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
+            //     break;
+            //   case 8:
+            //     spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
+            //     spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
+            //     break;
+            //   case 9:
+            //     spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
+            //     spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
+            //     break;
+            //   case 10:
+            //     spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
+            //     spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
+            //     break;
+            //   case 11:
+            //     spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
+            //     spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
+            //     break;
+            //   case 12:
+            //     spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
+            //     spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
+            //     break;
+            //   case 13:
+            //     spotShoots[datas[data][i].spot][0] += datas[data][i].goodShoots;
+            //     spotShoots[datas[data][i].spot][1] += datas[data][i].nbOfShoots;
+            //     break;
 
-              default:
-                console.error("Problem Number Spot");
-            }
+            //   default:
+            //     console.error("Problem Number Spot");
+            // }
           }
         }
 
@@ -154,14 +154,14 @@ class ShootingScreen extends Component {
   //   } else return;
   // };
 
-  decrementHandler = () => {
-    if (this.props.score > 0) {
-      const oldScore = this.props.score;
-      this.setState({
-        score: oldScore - 1,
-      });
-    } else return;
-  };
+  // decrementHandler = () => {
+  //   if (this.props.score > 0) {
+  //     const oldScore = this.props.score;
+  //     this.setState({
+  //       score: oldScore - 1,
+  //     });
+  //   } else return;
+  // };
 
   shootingAreaHandler = (area) => {
     this.setState((prevState) => {
@@ -196,7 +196,7 @@ class ShootingScreen extends Component {
       id: Date.now(),
       spot: spotIndex,
       goodShoots: this.props.score,
-      nbOfShoots: this.state.maxScore,
+      nbOfShoots: this.props.maxScore,
     });
 
     localStorage.setItem(
@@ -205,24 +205,24 @@ class ShootingScreen extends Component {
         data,
       })
     );
-
+    this.props.onResetScore();
     this.setState((prevState) => {
       const arrIsSelected = [...prevState.isAreaSelected];
       const newArr = arrIsSelected.map((zone) => (zone = false));
       return {
         isAreaSelected: newArr,
         shooting: false,
-        score: 0,
+        // score: 0,
         localStorageData: [...data],
       };
     });
   };
 
-  changeMaxScoreHandler = (nb) => {
-    this.setState({
-      maxScore: nb,
-    });
-  };
+  // changeMaxScoreHandler = (nb) => {
+  //   this.setState({
+  //     maxScore: nb,
+  //   });
+  // };
 
   cleanDatas = () => {
     localStorage.clear();
@@ -272,11 +272,10 @@ class ShootingScreen extends Component {
         <ScoreControl
           shooting={this.state.shooting}
           score={this.props.score}
-          maxScore={this.state.maxScore}
+          maxScore={this.props.maxScore}
           addPoint={this.props.onIncrementScore}
           removePoint={this.props.onDecrementScore}
           scoreDone={this.finishShootingHandler}
-          changeMaxScore={this.changeMaxScoreHandler}
           trainingDone={this.trainingDoneHandler}
         />
       </>
@@ -287,6 +286,7 @@ class ShootingScreen extends Component {
 const mapStateToProps = (state) => {
   return {
     score: state.score,
+    maxScore: state.maxScore,
   };
 };
 
@@ -294,6 +294,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onIncrementScore: () => dispatch(actions.incrementScore()),
     onDecrementScore: () => dispatch(actions.decrementScore()),
+    onResetScore: () => dispatch(actions.resetScore()),
   };
 };
 

@@ -1,39 +1,42 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import Button from "../../../UI/Button/Button";
+import * as actions from "../../../../store/actions/scoreControl";
 
 import classes from "./NumberOfShoots.module.css";
 
 class numberOfShoots extends Component {
-  state = {
-    nbOfShoots: 10,
-  };
+  // state = {
+  //   nbOfShoots: 10,
+  // };
 
   handleChange = (event) => {
     const val = event.target.value;
-    this.setState({
-      nbOfShoots: val >= 1 ? val : "",
-    });
+    // this.setState({
+    //   nbOfShoots: val >= 1 ? val : "",
+    // });
+    this.props.onChange(val);
   };
 
-  incrementShoots = () => {
-    const shoots = this.state.nbOfShoots;
-    this.setState({
-      nbOfShoots: shoots + 1,
-    });
-  };
+  // incrementShoots = () => {
+  //   const shoots = this.state.nbOfShoots;
+  //   this.setState({
+  //     nbOfShoots: shoots + 1,
+  //   });
+  // };
 
-  decrementShoots = () => {
-    const shoots = this.state.nbOfShoots;
-    this.setState({
-      nbOfShoots: shoots - 1 > 1 ? shoots - 1 : 1,
-    });
-  };
+  // decrementShoots = () => {
+  //   const shoots = this.state.nbOfShoots;
+  //   this.setState({
+  //     nbOfShoots: shoots - 1 > 1 ? shoots - 1 : 1,
+  //   });
+  // };
 
   clickHandler = (nb) => {
-    if (!this.state.nbOfShoots) return;
+    if (!this.props.nbOfShoots) return;
     this.props.showPanel();
-    this.props.changeMaxScore(nb);
+    // this.props.changeMaxScore(nb);
   };
 
   render() {
@@ -46,20 +49,20 @@ class numberOfShoots extends Component {
           <input
             className={classes.Label}
             type="number"
-            value={this.state.nbOfShoots}
+            value={this.props.nbOfShoots}
             onChange={this.handleChange}
           ></input>
           <div className={classes.AdjustScoreBtn}>
-            <Button btnType="Increment" clicked={this.incrementShoots}>
+            <Button btnType="Increment" clicked={this.props.onIncrementShoots}>
               +
             </Button>
-            <Button btnType="Decrement" clicked={this.decrementShoots}>
+            <Button btnType="Decrement" clicked={this.props.onDecrementShoots}>
               -
             </Button>
           </div>
           <Button
             btnType="Done"
-            clicked={() => this.clickHandler(this.state.nbOfShoots)}
+            clicked={() => this.clickHandler(this.props.nbOfShoots)}
           >
             Validate
           </Button>
@@ -69,4 +72,18 @@ class numberOfShoots extends Component {
   }
 }
 
-export default numberOfShoots;
+const mapStateToProps = (state) => {
+  return {
+    nbOfShoots: state.maxScore,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onIncrementShoots: () => dispatch(actions.incrementNbOfShoots()),
+    onDecrementShoots: () => dispatch(actions.decrementNbOfShoots()),
+    onChange: (nb) => dispatch(actions.handleChange(nb)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(numberOfShoots);
