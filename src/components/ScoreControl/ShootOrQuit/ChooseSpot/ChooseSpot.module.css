@@ -1,0 +1,8 @@
+.Container {
+  color: #ffffff;
+  background-color: var(--bgColor);
+  flex-grow: 1;
+  display: grid;
+  place-items: center;
+  font-size: xx-large;
+}

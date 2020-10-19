@@ -1,0 +1,33 @@
+.Button {
+  margin: 10px 0;
+  padding: 32px 0;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-size: xx-large;
+  outline: none;
+  transition: ease 0.1s;
+}
+
+.Button:active {
+  transform: translate(5px, 5px);
+  box-shadow: none;
+}
+
+.Increment {
+  background-color: #d9a577ff;
+  width: 100%;
+  margin-right: 5px;
+}
+
+.Decrement {
+  background-color: #f2cab3ff;
+  width: 100%;
+  margin-left: 5px;
+}
+
+.Done {
+  background-color: #8b654eff;
+  width: 100%;
+}
