@@ -7,7 +7,7 @@ const chooseSpot = () => {
   return (
     <div style={{ "--bgColor": floorColor }} className={classes.Container}>
       <span>
-        ^ <br /> ^ <br /> ^
+        ^
       </span>
       <span>Tap On Spot</span>
     </div>
