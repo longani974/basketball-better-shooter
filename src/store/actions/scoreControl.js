@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as actionTypes from "./actionTypes";
+import firebase from 'firebase'
 
 export const incrementScore = () => {
   return { type: actionTypes.INCREMENT_SCORE };
@@ -45,7 +46,7 @@ export const fetchDatasFail = () => {
 export const initDatas = () => {
   return (dispatch) => {
     axios
-      .get("https://shooter-trainer.firebaseio.com/trainingData.json")
+      .get(`https://shooter-trainer.firebaseio.com/trainingData/${firebase.auth().currentUser.uid}.json`)
       .then((response) => {
         dispatch(setDatas(response.data));
       })
@@ -70,10 +71,11 @@ const cleanDatas = () => {
 };
 
 export const sendDatas = (localStorageData, clean) => {
+  console.log(localStorageData)
   return (dispatch, action) => {
     axios
       .post(
-        "https://shooter-trainer.firebaseio.com/trainingData.json",
+       `https://shooter-trainer.firebaseio.com/trainingData/${firebase.auth().currentUser.uid}.json`,
         localStorageData
       ) // !!!!!!!!!
       .then((response) => {
