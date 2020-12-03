@@ -1,20 +1,15 @@
 import React from "react";
 
-const leftCorner = (props) => {
-  const clickHandler = () => {
-    props.areaChoosed(9);
-  };
-
+const leftCornerBack = (props) => {
   return (
     <>
       <path
-        onClick={clickHandler}
         id="path1435"
         d="m -0.311092,-0.396875 v 38.365618 a 58.652294,58.652294 0 0 0 1.5632121,2.33784 L 12.68243,32.382002 V -0.396875 Z"
         style={{
           display: "inline",
-          opacity: 0,
-          fill: props.color,
+          opacity: 1,
+          fill: `${props.selectColor(props.isSelected[9], props.color)}`,
           fillOpacity: 1,
           fillRule: "nonzero",
           stroke: "none",
@@ -26,18 +21,8 @@ const leftCorner = (props) => {
           strokeOpacity: 1,
         }}
       />
-      <text x="3%" y="15%" fill="white" fontSize="3">
-        {props.spotShootsData[9][0]} / {props.spotShootsData[9][1]}
-      </text>
-      <text x="3%" y="20%" fill="white" fontSize="3">
-        {(
-          (props.spotShootsData[9][0] / props.spotShootsData[9][1]) *
-          100
-        ).toFixed(0)}
-        %
-      </text>
     </>
   );
 };
 
-export default leftCorner;
+export default leftCornerBack;

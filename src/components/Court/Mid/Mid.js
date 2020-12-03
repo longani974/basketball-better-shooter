@@ -15,6 +15,7 @@ const mid = (props) => {
         color={midColor}
         selectedColor={successColor}
         spotShootsData={props.spotShootsData}
+        activeSpot={props.activeSpot}
       />
       <Straight
         areaChoosed={props.areaChoosed}
@@ -22,6 +23,7 @@ const mid = (props) => {
         color={midColor}
         selectedColor={successColor}
         spotShootsData={props.spotShootsData}
+        activeSpot={props.activeSpot}
       />
       <RightBaseline
         areaChoosed={props.areaChoosed}
@@ -29,6 +31,7 @@ const mid = (props) => {
         color={midColor}
         selectedColor={successColor}
         spotShootsData={props.spotShootsData}
+        activeSpot={props.activeSpot}
       />
     </>
   );

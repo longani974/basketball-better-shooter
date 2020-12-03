@@ -1,18 +1,31 @@
 import React from "react";
 
 import AroundRim from "./AroundRim/AroundRim";
+import AroundRimBack from "./AroundRim/AroundRimBack";
 import Mid from "./Mid/Mid";
+import MidBack from "./Mid/MidBack";
 import Long from "./Long/Long";
+import LongBack from "./Long/LongBack"
 import Three from "./Three/Three";
+import ThreeBack from "./Three/ThreeBack";
 import Floor from "./Floor/Floor";
 import Basket from "./Basket/Basket";
 import Lines from "./Lines/Lines";
+
+import { successColor } from "../../constants/colors";
+
 
 const court = (props) => {
   let width = 0;
   window.innerWidth < window.innerHeight
     ? (width = 100)
     : (width = 100 * (152 / 220));
+
+    const selectedSpot = (isSelected) => isSelected ? 0.5 : 0
+
+    const selectColor = (isSelected, color) => {
+      return isSelected ? successColor : color;
+    };
 
   return (
     <>
@@ -35,28 +48,44 @@ const court = (props) => {
               totalGoodShoots={props.totalGoodShoots}
               totalShoots={props.totalShoots}
             />
-            <AroundRim
-              areaChoosed={props.areaChoosed}
+            <AroundRimBack
               isSelected={props.isSelected}
-              spotShootsData={props.spotShootsData}
+              selectColor={selectColor}
             />
-            <Mid
-              areaChoosed={props.areaChoosed}
+            <MidBack 
               isSelected={props.isSelected}
-              spotShootsData={props.spotShootsData}
+              selectColor={selectColor}
             />
-            <Long
-              areaChoosed={props.areaChoosed}
+            <LongBack
               isSelected={props.isSelected}
-              spotShootsData={props.spotShootsData}
+              selectColor={selectColor}
             />
-            <Three
-              areaChoosed={props.areaChoosed}
+            <ThreeBack
               isSelected={props.isSelected}
-              spotShootsData={props.spotShootsData}
+              selectColor={selectColor}
             />
             <Lines />
             <Basket />
+            <AroundRim
+              areaChoosed={props.areaChoosed}
+              spotShootsData={props.spotShootsData}
+              activeSpot={selectedSpot}
+            />
+            <Mid
+              areaChoosed={props.areaChoosed}
+              spotShootsData={props.spotShootsData}
+              activeSpot={selectedSpot}
+            />
+            <Long
+              areaChoosed={props.areaChoosed}
+              spotShootsData={props.spotShootsData}
+              activeSpot={selectedSpot}
+            />
+            <Three
+              areaChoosed={props.areaChoosed}
+              spotShootsData={props.spotShootsData}
+              activeSpot={selectedSpot}
+            />
           </g>
         </svg>
       </div>

@@ -16,6 +16,7 @@ const long = (props) => {
         color={longColor}
         selectedColor={successColor}
         spotShootsData={props.spotShootsData}
+        activeSpot={props.activeSpot}
       />
       <LeftWing
         areaChoosed={props.areaChoosed}
@@ -23,6 +24,7 @@ const long = (props) => {
         color={longColor}
         selectedColor={successColor}
         spotShootsData={props.spotShootsData}
+        activeSpot={props.activeSpot}
       />
       <Straight
         areaChoosed={props.areaChoosed}
@@ -30,6 +32,7 @@ const long = (props) => {
         color={longColor}
         selectedColor={successColor}
         spotShootsData={props.spotShootsData}
+        activeSpot={props.activeSpot}
       />
       <RightWing
         areaChoosed={props.areaChoosed}
@@ -37,6 +40,7 @@ const long = (props) => {
         color={longColor}
         selectedColor={successColor}
         spotShootsData={props.spotShootsData}
+        activeSpot={props.activeSpot}
       />
       <RightBaseline
         areaChoosed={props.areaChoosed}
@@ -44,6 +48,7 @@ const long = (props) => {
         color={longColor}
         selectedColor={successColor}
         spotShootsData={props.spotShootsData}
+        activeSpot={props.activeSpot}
       />
     </>
   );
