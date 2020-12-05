@@ -1,4 +1,6 @@
 import React from "react";
+import { floorColor } from "../../../constants/colors";
+
 
 const floor = (props) => {
   let shootingData = "";
@@ -16,7 +18,7 @@ const floor = (props) => {
         style={{
           display: "inline",
           opacity: 1,
-          fill: "#6d808c",
+          fill: floorColor,
           fillOpacity: 1,
           fillRule: "nonzero",
           stroke: "none",

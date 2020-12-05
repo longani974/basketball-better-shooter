@@ -74,6 +74,7 @@ class ShootingScreen extends Component {
         data,
       })
     );
+    this.props.onSendDatas(JSON.parse(localStorage.getItem("shootData")).data, this.cleanDatas)
     this.props.onResetScore();
     this.setState((prevState) => {
       const arrIsSelected = [...prevState.isAreaSelected];
@@ -94,14 +95,35 @@ class ShootingScreen extends Component {
   };
 
   render() {
+
+    const shootsDatas = []
+    this.props.spotShootsData.forEach(d => shootsDatas.push([...d]))
+    let totalShootsLocalStorage = 0
+    let totalGoodShootsLocalStorage = 0
+    
+    if(localStorage.getItem("shootData")){
+      const extractData = [...JSON.parse(localStorage.getItem("shootData")).data];
+
+      for(let i = 0 ; i < extractData.length ; i++){
+        shootsDatas[extractData[i].spot][0] = shootsDatas[extractData[i].spot][0] + extractData[i].goodShoots
+        shootsDatas[extractData[i].spot][1] = shootsDatas[extractData[i].spot][1] + extractData[i].goodShoots
+
+        //console.log(extractData[i])
+        totalGoodShootsLocalStorage = totalGoodShootsLocalStorage + extractData[i].goodShoots
+        totalShootsLocalStorage = totalShootsLocalStorage + extractData[i].nbOfShoots
+      }
+      //console.log(shootsDatas, this.props.spotShootsData)
+
+    }
+
     return (
       <>
         <Court
           areaChoosed={this.shootingAreaHandler}
           isSelected={this.state.isAreaSelected}
-          totalGoodShoots={this.props.totalGoodShoots}
-          totalShoots={this.props.totalShoots}
-          spotShootsData={this.props.spotShootsData}
+          totalGoodShoots={this.props.totalGoodShoots + totalGoodShootsLocalStorage}
+          totalShoots={this.props.totalShoots + totalShootsLocalStorage}
+          spotShootsData={shootsDatas}
         />
         <ScoreControl
           shooting={this.state.shooting}
@@ -111,7 +133,7 @@ class ShootingScreen extends Component {
           removePoint={this.props.onDecrementScore}
           scoreDone={this.finishShootingHandler}
           trainingDone={() =>
-            this.props.onSendDatas(this.state.localStorageData, this.cleanDatas)
+            this.props.onSendDatas([...JSON.parse(localStorage.getItem("shootData")).data], this.cleanDatas)
           }
         />
       </>

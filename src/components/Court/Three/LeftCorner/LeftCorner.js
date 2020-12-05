@@ -7,6 +7,16 @@ const leftCorner = (props) => {
 
   return (
     <>
+          <text x="3%" y="15%" fill="white" fontSize="3">
+        {props.spotShootsData[9][0]} / {props.spotShootsData[9][1]}
+      </text>
+      <text x="3%" y="20%" fill="white" fontSize="3">
+        {(
+          (props.spotShootsData[9][0] / props.spotShootsData[9][1]) *
+          100
+        ).toFixed(0)}
+        %
+      </text>
       <path
         onClick={clickHandler}
         id="path1435"
@@ -26,16 +36,6 @@ const leftCorner = (props) => {
           strokeOpacity: 1,
         }}
       />
-      <text x="3%" y="15%" fill="white" fontSize="3">
-        {props.spotShootsData[9][0]} / {props.spotShootsData[9][1]}
-      </text>
-      <text x="3%" y="20%" fill="white" fontSize="3">
-        {(
-          (props.spotShootsData[9][0] / props.spotShootsData[9][1]) *
-          100
-        ).toFixed(0)}
-        %
-      </text>
     </>
   );
 };
