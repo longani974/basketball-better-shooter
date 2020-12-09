@@ -35,6 +35,9 @@ class ShootingScreen extends Component {
   shootingAreaHandler = (area) => {
     this.setState((prevState) => {
       const arrIsSelected = [...prevState.isAreaSelected];
+      for (let i = 0 ; i < arrIsSelected.length ; i++) {
+        if(arrIsSelected[i]) return // prevent clicking on another spot
+      }
       arrIsSelected[area] = true;
       return { isAreaSelected: arrIsSelected, shooting: true };
     });
