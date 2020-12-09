@@ -110,7 +110,7 @@ class ShootingScreen extends Component {
 
       for(let i = 0 ; i < extractData.length ; i++){
         shootsDatas[extractData[i].spot][0] = shootsDatas[extractData[i].spot][0] + extractData[i].goodShoots
-        shootsDatas[extractData[i].spot][1] = shootsDatas[extractData[i].spot][1] + extractData[i].goodShoots
+        shootsDatas[extractData[i].spot][1] = shootsDatas[extractData[i].spot][1] + extractData[i].nbOfShoots
 
         //console.log(extractData[i])
         totalGoodShootsLocalStorage = totalGoodShootsLocalStorage + extractData[i].goodShoots
