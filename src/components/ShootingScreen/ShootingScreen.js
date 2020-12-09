@@ -100,6 +100,7 @@ class ShootingScreen extends Component {
     this.props.spotShootsData.forEach(d => shootsDatas.push([...d]))
     let totalShootsLocalStorage = 0
     let totalGoodShootsLocalStorage = 0
+
     
     if(localStorage.getItem("shootData")){
       const extractData = [...JSON.parse(localStorage.getItem("shootData")).data];
@@ -113,8 +114,9 @@ class ShootingScreen extends Component {
         totalShootsLocalStorage = totalShootsLocalStorage + extractData[i].nbOfShoots
       }
       //console.log(shootsDatas, this.props.spotShootsData)
-
     }
+
+
 
     return (
       <>
@@ -126,6 +128,7 @@ class ShootingScreen extends Component {
           spotShootsData={shootsDatas}
         />
         <ScoreControl
+          shootsDatas={shootsDatas}
           shooting={this.state.shooting}
           score={this.props.score}
           maxScore={this.props.maxScore}

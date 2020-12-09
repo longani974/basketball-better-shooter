@@ -5,9 +5,10 @@ import ShootOrQuit from "./ShootOrQuit/ShootOrQuit";
 
 import classes from "./ScoreControl.module.css";
 import { floorColor } from "../../constants/colors";
+import backImage from "../../assets/img/back.svg"
 
 const scoreControl = (props) => {
-  let panel = <ShootOrQuit trainingDone={props.trainingDone} />;
+  let panel = <ShootOrQuit trainingDone={props.trainingDone} shootsDatas={props.shootsDatas}/>;
 
   if (props.shooting) {
     panel = (
@@ -22,6 +23,7 @@ const scoreControl = (props) => {
   }
   return (
     <div style={{ "--bgColor": floorColor }} className={classes.Container}>
+      {/* <img src={backImage} alt="" className={classes.BackImage}/> */}
       {panel}
     </div>
   );

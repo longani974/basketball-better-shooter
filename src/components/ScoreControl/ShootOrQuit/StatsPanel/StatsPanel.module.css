@@ -1,0 +1,17 @@
+.Stat {
+  color: #fff;
+  background-color: var(--bgColor);
+  border-radius: 7px;
+  text-align: center;
+  width: 40%;
+  height: 43%;
+  z-index: 100;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+p {
+  font-style: 29px;
+}

@@ -1,6 +1,19 @@
 .Container {
+  position: relative;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  background-image: url(../../assets/img/back.svg);
+  background-repeat: no-repeat;
+  background-position: top 25px right 45px;
+  background-size: 120%;
   background-color: var(--bgColor);
+  overflow: scroll;
+}
+
+.BackImage {
+  width: 120%;
+  position: absolute;
+  top: 10%;
+  right: 15%;
 }

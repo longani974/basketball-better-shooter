@@ -9,5 +9,6 @@ export const midColor = "#8480F2";
 export const longColor = "#34A9F2";
 export const threeColor = "#32BAD9";
 export const floorColor = "#102D40";
+export const whiteTransparent = "rgba(20, 60, 85, 0.9)"
 
 export const successColor = "green";

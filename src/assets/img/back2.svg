@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   sodipodi:docname="back2.svg"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 145 145"
+   height="145mm"
+   width="145mm">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     inkscape:window-maximized="1"
+     inkscape:window-y="-8"
+     inkscape:window-x="-8"
+     inkscape:window-height="1017"
+     inkscape:window-width="1920"
+     showgrid="false"
+     inkscape:document-rotation="0"
+     inkscape:current-layer="layer1"
+     inkscape:document-units="mm"
+     inkscape:cy="685.41837"
+     inkscape:cx="276.49063"
+     inkscape:zoom="0.49497475"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Calque 1">
+    <path
+       d="M 99.927897,15.307919 10.328316,164.31247 M 37.011476,4.7845982 A 86.934523,86.934523 0 0 0 -19.374255,45.010522 86.934523,86.934523 0 0 0 -28.466775,113.67426 86.934523,86.934523 0 0 0 27.918686,73.448776 86.934523,86.934523 0 0 0 37.011476,4.7845982 Z M 138.72276,65.946346 a 86.934523,86.934523 0 0 0 -56.385018,40.225754 86.934523,86.934523 0 0 0 -9.09253,68.66373 86.934523,86.934523 0 0 0 56.385028,-40.22575 86.934523,86.934523 0 0 0 9.09252,-68.663734 z m -9.09238,68.663644 A 86.934525,86.934525 0 0 1 10.328306,164.31248 86.934525,86.934525 0 0 1 -19.374175,45.010402 86.934525,86.934525 0 0 1 99.927897,15.30792 86.934525,86.934525 0 0 1 129.63038,134.60999"
+       style="fill:none;stroke:#9d60f2;stroke-width:3.6;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path841" />
+  </g>
+</svg>

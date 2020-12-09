@@ -1,8 +1,14 @@
 .Container {
   color: #ffffff;
+  background: 0.9;
   background-color: var(--bgColor);
   flex-grow: 1;
   display: grid;
   place-items: center;
   font-size: xx-large;
+  padding: 5%;
+  text-align: center;
+  font-size: 29px;
+  border-radius: 7px;
+  z-index: 100;
 }
