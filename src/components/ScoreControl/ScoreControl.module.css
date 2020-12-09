@@ -9,6 +9,22 @@
   background-size: 120%;
   background-color: var(--bgColor);
   overflow: scroll;
+  padding: 7%;
+}
+
+.Container > div {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  gap: 19px;
+}
+
+.Container > div > div:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 19px;
 }
 
 .BackImage {

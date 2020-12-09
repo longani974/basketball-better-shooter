@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import InformationModule from '../../../UI/InformationModule/InformationModule'
 import Button from "../../../UI/Button/Button";
 import * as actions from "../../../../store/actions/scoreControl";
 
@@ -41,33 +42,35 @@ class numberOfShoots extends Component {
 
   render() {
     return (
-      <div>
-        <label>
-          <p className={classes.Title}>
-            Choose how many shoots you want to take:
-          </p>
+      <>
+          <div className={classes.Container}>
+          <InformationModule>
+          How many shots
+          <br/>do you want to try?
           <input
             className={classes.Label}
             type="number"
             value={this.props.nbOfShoots}
             onChange={this.handleChange}
           ></input>
-          <div className={classes.AdjustScoreBtn}>
-            <Button btnType="Increment" clicked={this.props.onIncrementShoots}>
+          </InformationModule>
+      <div className={classes.StatsPanel}>
+      <Button btnType="Increment" clicked={this.props.onIncrementShoots}>
               +
             </Button>
             <Button btnType="Decrement" clicked={this.props.onDecrementShoots}>
               -
             </Button>
-          </div>
+          
           <Button
             btnType="Done"
             clicked={() => this.clickHandler(this.props.nbOfShoots)}
           >
             Validate
           </Button>
-        </label>
       </div>
+    </div>
+      </>
     );
   }
 }

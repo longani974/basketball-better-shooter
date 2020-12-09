@@ -1,33 +1,22 @@
 .Button {
-  margin: 10px 0;
-  padding: 32px 0;
   border: none;
-  border-radius: 20px;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
-  color: #fff;
+  border-radius: 7%;
+  box-shadow: 5px 5px 11px rgba(0, 0, 0, 0.15),
+    -5px -5px 11px rgba(113, 113, 113, 0.149);
+  color: #32bad9;
+  background: #102d40;
   font-size: xx-large;
   outline: none;
   transition: ease 0.1s;
+  width: 40%;
+  height: 80%;
 }
 
 .Button:active {
-  transform: translate(5px, 5px);
-  box-shadow: none;
-}
-
-.Increment {
-  background-color: #d9a577ff;
-  width: 100%;
-  margin-right: 5px;
-}
-
-.Decrement {
-  background-color: #f2cab3ff;
-  width: 100%;
-  margin-left: 5px;
+  box-shadow: -1px -1px 11px rgba(0, 0, 0, 0.15),
+    1px 1px 11px rgba(113, 113, 113, 0.149);
 }
 
 .Done {
-  background-color: #8b654eff;
   width: 100%;
 }

@@ -5,7 +5,7 @@ import ShootOrQuit from "./ShootOrQuit/ShootOrQuit";
 
 import classes from "./ScoreControl.module.css";
 import { floorColor } from "../../constants/colors";
-import backImage from "../../assets/img/back.svg"
+//import backImage from "../../assets/img/back.svg"
 
 const scoreControl = (props) => {
   let panel = <ShootOrQuit trainingDone={props.trainingDone} shootsDatas={props.shootsDatas}/>;

@@ -1,7 +1,9 @@
 import React from "react";
 
-import ChooseSpot from "./ChooseSpot/ChooseSpot";
+//import ChooseSpot from "./ChooseSpot/ChooseSpot";
 import StatsPanel from "./StatsPanel/StatsPanel"
+import InformationModule from '../../UI/InformationModule/InformationModule'
+
 //import TrainingDone from "./TrainingDone/TrainingDone";
 
 import classes from "./ShootOrQuit.module.css";
@@ -33,7 +35,9 @@ const shootOrQuit = (props) => {
 
   return (
     <div className={classes.Container}>
-      <ChooseSpot />
+      <InformationModule>Tap a Court Spot
+    <br/>Above to Start
+    <br/>your Training session</InformationModule>
       <div className={classes.StatsPanel}>
         <StatsPanel 
           statName="3PTS"

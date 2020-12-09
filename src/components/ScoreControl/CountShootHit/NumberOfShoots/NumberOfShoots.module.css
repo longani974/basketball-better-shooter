@@ -1,8 +1,8 @@
-.AdjustScoreBtn {
+/* .AdjustScoreBtn {
   display: flex;
-}
+} */
 
-.Label {
+/* .Label {
   width: 100%;
   text-align: center;
   padding: 32px 0;
@@ -11,13 +11,30 @@
   background-color: #8b654eff;
   color: #fff;
   font-size: xx-large;
-}
+} */
 
-.Title {
+/* .Title {
   position: absolute;
   text-align: center;
   width: 100%;
   left: 50%;
   transform: translate(-50%);
   color: #fff;
+} */
+.Container input {
+  position: relative;
+  top: 10px;
+  margin: auto;
+  display: block;
+  text-align: center;
+  width: 30%;
+  height: 50%;
+  border: none;
+  border-radius: 7%;
+  background: #102d40;
+  box-shadow: inset 5px 5px 11px rgba(0, 0, 0, 0.15),
+    inset -5px -5px 11px rgba(113, 113, 113, 0.149);
+  font-size: 45px;
+  line-height: 53px;
+  color: #9d60f2;
 }
