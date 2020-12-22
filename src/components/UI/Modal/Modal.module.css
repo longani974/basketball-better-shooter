@@ -1,0 +1,33 @@
+.modal {
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 0 10vw;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+    transition: all 0.3s ease-in-out;
+    display: grid;
+}
+
+.nonApparent {
+    transform: translate(-50%, 50%);
+}
+
+.modal > div {
+    display: flex;
+    justify-content: center;
+    height: 80%;
+    flex-flow: column;
+    gap: 5vh;
+}
+
+.modal > div > div:last-child {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 5vh;
+}
