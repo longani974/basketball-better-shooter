@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 
 import Court from "../Court/Court";
 import ScoreControl from "../ScoreControl/ScoreControl";
+import Modal from "../UI/Modal/Modal"
+import CountShootHit from "../ScoreControl/CountShootHit/CountShootHit"
+
 import * as actions from "../../store/actions/scoreControl";
 
 class ShootingScreen extends Component {
@@ -44,7 +47,7 @@ class ShootingScreen extends Component {
   };
 
   finishShootingHandler = () => {
-    const areaArr = this.state.isAreaSelected;
+    const areaArr = [...this.state.isAreaSelected];
 
     let spotIndex;
 
@@ -123,6 +126,15 @@ class ShootingScreen extends Component {
 
     return (
       <>
+        <Modal isShooting = {this.state.shooting}>
+          <CountShootHit
+                      score={this.props.score}
+                      maxScore={this.props.maxScore}
+                      addPoint={this.props.onIncrementScore}
+                      removePoint={this.props.onDecrementScore}
+                      scoreDone={this.finishShootingHandler}
+            />
+        </Modal>
         <Court
           areaChoosed={this.shootingAreaHandler}
           isSelected={this.state.isAreaSelected}

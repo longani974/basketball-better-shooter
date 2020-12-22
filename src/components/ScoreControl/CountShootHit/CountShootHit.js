@@ -4,16 +4,21 @@ import Button from "../../UI/Button/Button";
 import Score from "../Score/Score";
 import NumberOfShoots from "./NumberOfShoots/NumberOfShoots";
 import InformationModule from '../../UI/InformationModule/InformationModule'
-import classes from "./CountShootHIt.module.css";
+//import classes from "./CountShootHIt.module.css";
 
 class countShootHit extends Component {
   state = {
     showPanel: false,
   };
 
+  clickHandler = () => {
+    this.showPanelHandler()
+    this.props.scoreDone()
+  }
+
   showPanelHandler = () => {
-    this.setState({
-      showPanel: !this.state.showPanel,
+    this.setState((prevState)=>{
+      return {showPanel: !prevState.showPanel,}
     });
   };
 
@@ -36,7 +41,7 @@ class countShootHit extends Component {
               <Button btnType="Decrement" clicked={this.props.removePoint}>
                 -
               </Button>
-            <Button btnType="Done" clicked={this.props.scoreDone}>
+            <Button btnType="Done" clicked={this.clickHandler}>
               Done
             </Button>
         </div>
