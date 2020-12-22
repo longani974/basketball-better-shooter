@@ -1,184 +1,189 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 
-import Court from "../Court/Court";
-import ScoreControl from "../ScoreControl/ScoreControl";
-import Modal from "../UI/Modal/Modal"
-import CountShootHit from "../ScoreControl/CountShootHit/CountShootHit"
+import Court from '../Court/Court';
+import ScoreControl from '../ScoreControl/ScoreControl';
+import Modal from '../UI/Modal/Modal';
+import CountShootHit from '../ScoreControl/CountShootHit/CountShootHit';
 
-import * as actions from "../../store/actions/scoreControl";
+import * as actions from '../../store/actions/scoreControl';
 
-class ShootingScreen extends Component {
-  state = {
-    shooting: false,
-    isAreaSelected: [
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-    ],
-    localStorageData: [],
-  };
+const ShootingScreen = (props) => {
+    const [shooting, setShooting] = useState(false);
+    const [isAreaSelected, setIsAreaSelected] = useState([
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+    ]);
+    const [localStorageData, setLocalStorageData] = useState([]);
 
-  componentDidMount() {
-    // We receive the datas from the backend
-    this.props.onInitDatas();
-  }
+    const onInitDatas = props.onInitDatas;
+    // store in a const beacause if I put props.onInitDatas in useState
+    // I got an infinite loop when I define an dependency
+    // If the dependency if an empty array it work but EsLint give a warning
+    useEffect(() => {
+        // We receive the datas from the backend
+        onInitDatas();
+    }, [onInitDatas]);
 
-  shootingAreaHandler = (area) => {
-    this.setState((prevState) => {
-      const arrIsSelected = [...prevState.isAreaSelected];
-      for (let i = 0 ; i < arrIsSelected.length ; i++) {
-        if(arrIsSelected[i]) return // prevent clicking on another spot
-      }
-      arrIsSelected[area] = true;
-      return { isAreaSelected: arrIsSelected, shooting: true };
-    });
-  };
+    const shootingAreaHandler = (area) => {
+        setIsAreaSelected((prevIsAreaSelected) => {
+            const arrIsSelected = [...prevIsAreaSelected];
+            for (let i = 0; i < arrIsSelected.length; i++) {
+                if (arrIsSelected[i]) return; // prevent clicking on another spot
+            }
+            arrIsSelected[area] = true;
+            return arrIsSelected;
+        });
+        setShooting(true);
+    };
 
-  finishShootingHandler = () => {
-    const areaArr = [...this.state.isAreaSelected];
+    const finishShootingHandler = () => {
+        const areaArr = [...isAreaSelected];
 
-    let spotIndex;
+        let spotIndex;
 
-    for (let i = 0; i < areaArr.length; i++) {
-      if (areaArr[i]) {
-        spotIndex = i;
-      }
+        for (let i = 0; i < areaArr.length; i++) {
+            if (areaArr[i]) {
+                spotIndex = i;
+            }
+        }
+
+        let data = [...localStorageData];
+        if (localStorage.getItem('shootData') && !localStorageData.length) {
+            const extractData = JSON.parse(localStorage.getItem('shootData'));
+            for (let i = 0; i < extractData.data.length; i++) {
+                data.push(extractData.data[i]);
+            }
+        }
+        data.push({
+            id: Date.now(),
+            spot: spotIndex,
+            goodShoots: props.score,
+            nbOfShoots: props.maxScore,
+        });
+
+        localStorage.setItem(
+            'shootData',
+            JSON.stringify({
+                data,
+            })
+        );
+        props.onSendDatas(
+            JSON.parse(localStorage.getItem('shootData')).data,
+            cleanDatas
+        );
+        props.onResetScore();
+
+        setIsAreaSelected((prevIsAreaSelected) => {
+            const arrIsSelected = [...prevIsAreaSelected];
+            const newArr = arrIsSelected.map((zone) => (zone = false));
+
+            return newArr;
+        });
+
+        setShooting(false);
+
+        setLocalStorageData([...data]);
+    };
+
+    const cleanDatas = () => {
+        setLocalStorageData([]);
+    };
+
+    const shootsDatas = [];
+    props.spotShootsData.forEach((d) => shootsDatas.push([...d]));
+    let totalShootsLocalStorage = 0;
+    let totalGoodShootsLocalStorage = 0;
+
+    if (localStorage.getItem('shootData')) {
+        const extractData = [
+            ...JSON.parse(localStorage.getItem('shootData')).data,
+        ];
+
+        for (let i = 0; i < extractData.length; i++) {
+            shootsDatas[extractData[i].spot][0] =
+                shootsDatas[extractData[i].spot][0] + extractData[i].goodShoots;
+            shootsDatas[extractData[i].spot][1] =
+                shootsDatas[extractData[i].spot][1] + extractData[i].nbOfShoots;
+
+            totalGoodShootsLocalStorage =
+                totalGoodShootsLocalStorage + extractData[i].goodShoots;
+            totalShootsLocalStorage =
+                totalShootsLocalStorage + extractData[i].nbOfShoots;
+        }
     }
-
-    let data = [...this.state.localStorageData];
-    if (
-      localStorage.getItem("shootData") &&
-      !this.state.localStorageData.length
-    ) {
-      const extractData = JSON.parse(localStorage.getItem("shootData"));
-      for (let i = 0; i < extractData.data.length; i++) {
-        data.push(extractData.data[i]);
-      }
-    }
-    data.push({
-      id: Date.now(),
-      spot: spotIndex,
-      goodShoots: this.props.score,
-      nbOfShoots: this.props.maxScore,
-    });
-
-    localStorage.setItem(
-      "shootData",
-      JSON.stringify({
-        data,
-      })
-    );
-    this.props.onSendDatas(JSON.parse(localStorage.getItem("shootData")).data, this.cleanDatas)
-    this.props.onResetScore();
-    this.setState((prevState) => {
-      const arrIsSelected = [...prevState.isAreaSelected];
-      const newArr = arrIsSelected.map((zone) => (zone = false));
-      return {
-        isAreaSelected: newArr,
-        shooting: false,
-        // score: 0,
-        localStorageData: [...data],
-      };
-    });
-  };
-
-  cleanDatas = () => {
-    this.setState({
-      localStorageData: [],
-    });
-  };
-
-  render() {
-
-    const shootsDatas = []
-    this.props.spotShootsData.forEach(d => shootsDatas.push([...d]))
-    let totalShootsLocalStorage = 0
-    let totalGoodShootsLocalStorage = 0
-
-    
-    if(localStorage.getItem("shootData")){
-      const extractData = [...JSON.parse(localStorage.getItem("shootData")).data];
-
-      for(let i = 0 ; i < extractData.length ; i++){
-        shootsDatas[extractData[i].spot][0] = shootsDatas[extractData[i].spot][0] + extractData[i].goodShoots
-        shootsDatas[extractData[i].spot][1] = shootsDatas[extractData[i].spot][1] + extractData[i].nbOfShoots
-
-        //console.log(extractData[i])
-        totalGoodShootsLocalStorage = totalGoodShootsLocalStorage + extractData[i].goodShoots
-        totalShootsLocalStorage = totalShootsLocalStorage + extractData[i].nbOfShoots
-      }
-      //console.log(shootsDatas, this.props.spotShootsData)
-    }
-
-
 
     return (
-      <>
-        <Modal isShooting = {this.state.shooting}>
-          <CountShootHit
-                      score={this.props.score}
-                      maxScore={this.props.maxScore}
-                      addPoint={this.props.onIncrementScore}
-                      removePoint={this.props.onDecrementScore}
-                      scoreDone={this.finishShootingHandler}
+        <>
+            <Modal isShooting={shooting}>
+                <CountShootHit
+                    score={props.score}
+                    maxScore={props.maxScore}
+                    addPoint={props.onIncrementScore}
+                    removePoint={props.onDecrementScore}
+                    scoreDone={finishShootingHandler}
+                />
+            </Modal>
+            <Court
+                areaChoosed={shootingAreaHandler}
+                isSelected={isAreaSelected}
+                totalGoodShoots={
+                    props.totalGoodShoots + totalGoodShootsLocalStorage
+                }
+                totalShoots={props.totalShoots + totalShootsLocalStorage}
+                spotShootsData={shootsDatas}
             />
-        </Modal>
-        <Court
-          areaChoosed={this.shootingAreaHandler}
-          isSelected={this.state.isAreaSelected}
-          totalGoodShoots={this.props.totalGoodShoots + totalGoodShootsLocalStorage}
-          totalShoots={this.props.totalShoots + totalShootsLocalStorage}
-          spotShootsData={shootsDatas}
-        />
-        <ScoreControl
-          shootsDatas={shootsDatas}
-          shooting={this.state.shooting}
-          score={this.props.score}
-          maxScore={this.props.maxScore}
-          addPoint={this.props.onIncrementScore}
-          removePoint={this.props.onDecrementScore}
-          scoreDone={this.finishShootingHandler}
-          trainingDone={() =>
-            this.props.onSendDatas([...JSON.parse(localStorage.getItem("shootData")).data], this.cleanDatas)
-          }
-        />
-      </>
+            <ScoreControl
+                shootsDatas={shootsDatas}
+                shooting={shooting}
+                score={props.score}
+                maxScore={props.maxScore}
+                addPoint={props.onIncrementScore}
+                removePoint={props.onDecrementScore}
+                scoreDone={finishShootingHandler}
+                trainingDone={() =>
+                    props.onSendDatas(
+                        [...JSON.parse(localStorage.getItem('shootData')).data],
+                        cleanDatas
+                    )
+                }
+            />
+        </>
     );
-  }
-}
+};
 
 const mapStateToProps = (state) => {
-  return {
-    score: state.score,
-    maxScore: state.maxScore,
-    totalGoodShoots: state.totalGoodShoots,
-    totalShoots: state.totalShoots,
-    spotShootsData: state.spotShootsData,
-    localStorageData: state.localStorageData,
-  };
+    return {
+        score: state.score,
+        maxScore: state.maxScore,
+        totalGoodShoots: state.totalGoodShoots,
+        totalShoots: state.totalShoots,
+        spotShootsData: state.spotShootsData,
+        localStorageData: state.localStorageData,
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    onIncrementScore: () => dispatch(actions.incrementScore()),
-    onDecrementScore: () => dispatch(actions.decrementScore()),
-    onResetScore: () => dispatch(actions.resetScore()),
-    onInitDatas: () => dispatch(actions.initDatas()),
-    onSendDatas: (localStorageData, clean) =>
-      dispatch(actions.sendDatas(localStorageData, clean)),
-  };
+    return {
+        onIncrementScore: () => dispatch(actions.incrementScore()),
+        onDecrementScore: () => dispatch(actions.decrementScore()),
+        onResetScore: () => dispatch(actions.resetScore()),
+        onInitDatas: () => dispatch(actions.initDatas()),
+        onSendDatas: (localStorageData, clean) =>
+            dispatch(actions.sendDatas(localStorageData, clean)),
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShootingScreen);

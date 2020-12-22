@@ -1,59 +1,47 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase';
 
-import "./App.css";
-import ShootingScreen from "./components/ShootingScreen/ShootingScreen";
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <ShootingScreen />
-//     </div>
-//   );
-// }
+import './App.css';
+import ShootingScreen from './components/ShootingScreen/ShootingScreen';
 
 firebase.initializeApp({
-  apiKey: "AIzaSyCrKHYH9NBo-HzgE2ztlE12A-QDdi4Qc2Q",
-  authDomain: "shooter-trainer.firebaseapp.com"
-})
+    apiKey: 'AIzaSyCrKHYH9NBo-HzgE2ztlE12A-QDdi4Qc2Q',
+    authDomain: 'shooter-trainer.firebaseapp.com',
+});
 
+export const App = (props) => {
+    const [isSignedIn, setIsSignedIn] = useState(false);
 
-export class App extends Component {
-  state={isSignedIn:false}
+    const uiConfig = {
+        signInFlow: 'popup',
+        signInOptions: [
+            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+            firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        ],
+        callbacks: {
+            signInSuccessWithAuthResult: () => false,
+        },
+    };
 
-  uiConfig = {
-    signInFlow: 'popup',
-    signInOptions: [
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      firebase.auth.EmailAuthProvider.PROVIDER_ID
-    ],
-    callbacks: {
-      signInSuccessWithAuthResult: () => false
-    }
-  };
+    useEffect(() => {
+        firebase.auth().onAuthStateChanged((user) => {
+            setIsSignedIn(!!user);
+        });
+    }, []);
 
-  componentDidMount() {
-    firebase.auth().onAuthStateChanged(
-      (user) => {
-        this.setState({isSignedIn: !!user})
-      })
-  }
-  
-
-  render() {
     return (
-    <div className="App">
-      {this.state.isSignedIn ? 
-      <ShootingScreen /> :
-      (
-        <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}/>
-      )
-    }
-      
-    </div>)
-  }
-}
-
+        <div className="App">
+            {isSignedIn ? (
+                <ShootingScreen />
+            ) : (
+                <StyledFirebaseAuth
+                    uiConfig={uiConfig}
+                    firebaseAuth={firebase.auth()}
+                />
+            )}
+        </div>
+    );
+};
 
 export default App;

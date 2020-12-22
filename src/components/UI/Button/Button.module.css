@@ -1,6 +1,6 @@
 .Button {
   border: none;
-  border-radius: 7%;
+  border-radius: 7px;
   box-shadow: 5px 5px 11px rgba(0, 0, 0, 0.15),
     -5px -5px 11px rgba(113, 113, 113, 0.149);
   color: #32bad9;
