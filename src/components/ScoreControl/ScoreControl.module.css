@@ -1,35 +1,36 @@
 .Container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  background-image: url(../../assets/img/back.svg);
-  background-repeat: no-repeat;
-  background-position: top 25px right 45px;
-  background-size: 120%;
-  background-color: var(--bgColor);
-  overflow: scroll;
-  padding: 7%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background-image: url(../../assets/img/back.svg);
+    background-repeat: no-repeat;
+    background-position: top 25px right 45px;
+    background-size: 120%;
+    background-color: var(--bgColor);
+    overflow: scroll;
+    padding: 7%;
 }
 
 .Container > div {
-  position: relative;
-  display: flex;
-  flex-flow: column;
-  height: 100%;
-  gap: 19px;
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    gap: 19px;
+    padding-bottom: 30px;
 }
 
 .Container > div > div:last-child {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 19px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 19px;
 }
 
 .BackImage {
-  width: 120%;
-  position: absolute;
-  top: 10%;
-  right: 15%;
+    width: 120%;
+    position: absolute;
+    top: 10%;
+    right: 15%;
 }

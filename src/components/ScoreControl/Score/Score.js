@@ -1,13 +1,14 @@
-import React from "react";
+import React from 'react';
 
-import classes from "./Score.module.css";
+import classes from './Score.module.css';
 
 const score = (props) => {
-  return (
-    <div className={classes.Score}>
-      {props.currentScore} / {props.maxScore}{" "}
-    </div>
-  );
+    return (
+        // ' notranslate' so the div can not be translate (if translate is active the score display stay at 0)
+        <div className={classes.Score + ' notranslate'}>
+            {props.currentScore} / {props.maxScore}
+        </div>
+    );
 };
 
 export default score;
