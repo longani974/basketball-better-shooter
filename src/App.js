@@ -5,13 +5,19 @@ import firebase from 'firebase';
 import './App.css';
 import ShootingScreen from './components/ShootingScreen/ShootingScreen';
 
-firebase.initializeApp({
+const firebaseApp = firebase.initializeApp({
     apiKey: 'AIzaSyCrKHYH9NBo-HzgE2ztlE12A-QDdi4Qc2Q',
     authDomain: 'shooter-trainer.firebaseapp.com',
+    databaseURL: 'https://shooter-trainer.firebaseio.com',
+    projectId: 'shooter-trainer',
+    storageBucket: 'shooter-trainer.appspot.com',
+    messagingSenderId: '308008047922',
+    appId: '1:308008047922:web:fb911546cb2039745c732b',
 });
 
 export const App = (props) => {
     const [isSignedIn, setIsSignedIn] = useState(false);
+    const [token, setToken] = useState(null);
 
     const uiConfig = {
         signInFlow: 'popup',
@@ -25,15 +31,22 @@ export const App = (props) => {
     };
 
     useEffect(() => {
-        firebase.auth().onAuthStateChanged((user) => {
-            setIsSignedIn(!!user);
+        firebaseApp.auth().onAuthStateChanged((user) => {
+            if (user) {
+                user.getIdToken().then((accessToken) => {
+                    setToken(accessToken);
+                });
+                setIsSignedIn(!!user);
+            } else {
+                console.log('pouet');
+            }
         });
-    }, []);
+    }, [setToken]);
 
     return (
         <div className="App">
             {isSignedIn ? (
-                <ShootingScreen />
+                <ShootingScreen token={token} />
             ) : (
                 <StyledFirebaseAuth
                     uiConfig={uiConfig}

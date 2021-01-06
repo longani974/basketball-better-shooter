@@ -33,9 +33,12 @@ const ShootingScreen = (props) => {
     // I got an infinite loop when I define an dependency
     // If the dependency if an empty array it work but EsLint give a warning
     useEffect(() => {
-        // We receive the datas from the backend
-        onInitDatas();
-    }, [onInitDatas]);
+        if (props.token) {
+            // If statment so we wait token != null and error doesn't appear in the consol
+            // We receive the datas from the backend
+            onInitDatas(props.token);
+        }
+    }, [onInitDatas, props.token]);
 
     const shootingAreaHandler = (area) => {
         setIsAreaSelected((prevIsAreaSelected) => {
@@ -82,7 +85,8 @@ const ShootingScreen = (props) => {
         );
         props.onSendDatas(
             JSON.parse(localStorage.getItem('shootData')).data,
-            cleanDatas
+            cleanDatas,
+            props.token
         );
         props.onResetScore();
 
@@ -156,7 +160,8 @@ const ShootingScreen = (props) => {
                 trainingDone={() =>
                     props.onSendDatas(
                         [...JSON.parse(localStorage.getItem('shootData')).data],
-                        cleanDatas
+                        cleanDatas,
+                        props.token
                     )
                 }
             />
@@ -180,9 +185,9 @@ const mapDispatchToProps = (dispatch) => {
         onIncrementScore: () => dispatch(actions.incrementScore()),
         onDecrementScore: () => dispatch(actions.decrementScore()),
         onResetScore: () => dispatch(actions.resetScore()),
-        onInitDatas: () => dispatch(actions.initDatas()),
-        onSendDatas: (localStorageData, clean) =>
-            dispatch(actions.sendDatas(localStorageData, clean)),
+        onInitDatas: (token) => dispatch(actions.initDatas(token)),
+        onSendDatas: (localStorageData, clean, token) =>
+            dispatch(actions.sendDatas(localStorageData, clean, token)),
     };
 };
 
