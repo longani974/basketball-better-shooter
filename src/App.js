@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase';
+import * as firebaseui from 'firebaseui';
 
 import './App.css';
 import ShootingScreen from './components/ShootingScreen/ShootingScreen';
@@ -24,6 +25,7 @@ export const App = (props) => {
         signInOptions: [
             firebase.auth.GoogleAuthProvider.PROVIDER_ID,
             firebase.auth.EmailAuthProvider.PROVIDER_ID,
+            firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID,
         ],
         callbacks: {
             signInSuccessWithAuthResult: () => false,
