@@ -13,3 +13,22 @@ html {
     flex-flow: column;
     height: 100vh;
 }
+
+@media screen and (min-width: 800px) {
+    /* 
+        Modal.module.css 
+        Button.module.css
+    */
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(rgb(10, 2, 19), rgb(11, 1, 26));
+    }
+    .App {
+        flex-direction: row;
+        width: 840px;
+        height: 365px;
+    }
+}

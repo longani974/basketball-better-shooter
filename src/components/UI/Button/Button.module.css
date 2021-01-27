@@ -1,22 +1,32 @@
 .Button {
-  border: none;
-  border-radius: 7px;
-  box-shadow: 5px 5px 11px rgba(0, 0, 0, 0.15),
-    -5px -5px 11px rgba(113, 113, 113, 0.149);
-  color: #32bad9;
-  background: #102d40;
-  font-size: xx-large;
-  outline: none;
-  transition: ease 0.1s;
-  width: 40%;
-  height: 80%;
+    border: none;
+    border-radius: 7px;
+    box-shadow: 5px 5px 11px rgba(0, 0, 0, 0.15),
+        -5px -5px 11px rgba(113, 113, 113, 0.149);
+    color: #32bad9;
+    background: #102d40;
+    font-size: xx-large;
+    outline: none;
+    transition: ease 0.1s;
+    width: 40%;
+    height: 80%;
 }
 
 .Button:active {
-  box-shadow: -1px -1px 11px rgba(0, 0, 0, 0.15),
-    1px 1px 11px rgba(113, 113, 113, 0.149);
+    box-shadow: -1px -1px 11px rgba(0, 0, 0, 0.15),
+        1px 1px 11px rgba(113, 113, 113, 0.149);
 }
 
 .Done {
-  width: 100%;
+    width: 100%;
+}
+
+@media (min-width: 800px) {
+    .Button {
+        width: 100px;
+        height: 100px;
+    }
+    .Done {
+        width: 100%;
+    }
 }

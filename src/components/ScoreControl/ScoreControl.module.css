@@ -8,7 +8,7 @@
     background-position: top 25px right 45px;
     background-size: 120%;
     background-color: var(--bgColor);
-    overflow: scroll;
+    overflow-y: scroll;
     padding: 7%;
 }
 

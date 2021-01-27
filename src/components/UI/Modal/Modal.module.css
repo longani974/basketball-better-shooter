@@ -31,3 +31,31 @@
     justify-content: space-between;
     gap: 5vh;
 }
+
+@media screen and (min-width: 800px) {
+    .nonApparent {
+        transform: translate(-50%, 150%);
+    }
+    .modal {
+        width: 840px;
+        height: 365px;
+        padding: 0;
+    }
+
+    .modal > div {
+        flex-flow: row;
+        justify-content: space-around;
+        align-items: center;
+        gap: 0;
+        height: 365px;
+    }
+
+    .modal > div > div:first-child {
+        width: 250px;
+    }
+
+    .modal > div > div:last-child {
+        max-height: none;
+        width: 250px;
+    }
+}
